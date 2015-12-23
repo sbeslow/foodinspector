@@ -1,2 +1,5 @@
-settings_secret
 food-venv/
+food_inspector/food_inspector/.DS_Store
+food_inspector/food_inspector/__pycache__/
+food_inspector/.DS_Store
+food_inspector/db.sqlite3
