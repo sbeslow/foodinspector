@@ -40,10 +40,12 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'food_inspector.urls'
 
+print("templates: " + BASE_DIR + '/food_inspector/templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR + '/food_inspector/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
