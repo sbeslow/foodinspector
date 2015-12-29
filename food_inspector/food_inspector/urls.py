@@ -17,9 +17,12 @@ Including another URLconf
 from django.conf.urls import url
 # from django.contrib import admin
 from food_inspector.views import *
+from food_inspector.helpers import call_on_startup
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^$', home),
     url(r'^searchName', searchName),
 ]
+
+call_on_startup()
