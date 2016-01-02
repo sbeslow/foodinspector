@@ -2,19 +2,22 @@
 
 {% block content %}
 
-	<table class="table table-hover">
-		<tbody>
-			{% for restaurant in restaurants %}
-				<tr class='clickable-row' data-href='/inspect/{{restaurant.id}}'>
-					<td>{{ restaurant.name}}</td>
-					<td>{{ restaurant.address }}</td>
-    			</tr>
+	<div class="container">
 
-			{% endfor %}
+		<table class="table table-hover">
+			<tbody>
+				{% for restaurant in restaurants %}
+					<tr class='clickable-row' data-href='/inspect/{{restaurant.id}}'>
+						<td>{{ restaurant.name}}</td>
+						<td>{{ restaurant.address }}</td>
+	    			</tr>
 
-		</tbody>
+				{% endfor %}
 
-	</table>
+			</tbody>
+
+		</table>
+	</div>
 
 {% endblock %}
 

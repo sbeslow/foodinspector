@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container" style="text-align:center;">
+
+		<h2> {{ restaurant.name}}</h2>
+		<h5> {{ restaurant.address }}</h5>
+		<h3>Most Recent Inspection: {{inspection.inspection_date}}</h3>
+		<h4>Risk Level: {{inspection.risk}}</h4>
+		<table class="table">
+			<tbody>
+				{% for violation in inspection.violations %}
+					<tr><td>{{violation}}
+	    			</tr>
+
+				{% endfor %}
+
+			</tbody>
+
+		</table>
+
+    </div>
+
+{% endblock %}
