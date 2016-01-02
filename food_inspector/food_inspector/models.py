@@ -8,7 +8,10 @@ class Search(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)
-    license_number = models.CharField(max_length=20)
+    license_number = models.CharField(max_length=20, unique=True)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=35)
     zip_code = models.CharField(max_length=10)
+
+    class Meta:
+        unique_together = ('name', 'address',)

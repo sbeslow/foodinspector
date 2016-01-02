@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<table class="table table-hover">
+		<tbody>
+			{% for restaurant in restaurants %}
+				<tr class='clickable-row' data-href='/inspect/{{restaurant.id}}'>
+					<td>{{ restaurant.name}}</td>
+					<td>{{ restaurant.address }}</td>
+    			</tr>
+
+			{% endfor %}
+
+		</tbody>
+
+	</table>
+
+{% endblock %}
+
+{% block script %}
+<script>
+	$( document ).ready(function() {
+	    $(".clickable-row").click(function() {
+	        window.document.location = $(this).data("href");
+	    });
+	});
+</script>
+{% endblock %}
