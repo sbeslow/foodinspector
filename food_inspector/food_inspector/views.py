@@ -1,17 +1,17 @@
 import requests
+import json
 from django.shortcuts import render_to_response
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 from food_inspector.restaurant_finder import find_restaurant_in_db
 from food_inspector.models import Restaurant
-from django.http import HttpResponse
-import json
+from django.template import RequestContext
 
 
 def home(request):
-    return render_to_response('home.html')
+    return render_to_response('home.html', {},
+                              context_instance=RequestContext(request))
 
 
-@csrf_exempt
 def locate_restaurant(request):
     name_input = request.POST.get("restaurantName")
 
@@ -60,9 +60,9 @@ def retrieve_inspection_report(request, restaurant_id):
     data = {"restaurant": {"name": restaurant.name,
             "address": restaurant.address}}
     if "violations" in most_recent_report:
-    	violations = most_recent_report["violations"].split('|')
+        violations = most_recent_report["violations"].split('|')
     else:
-    	violations = []
+        violations = []
     # print(violations)
     inspection = most_recent_report
     # print(inspection)
