@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from food_inspector.restaurant_finder import find_restaurant_in_db
 from food_inspector.models import Restaurant
 from django.template import RequestContext
+import string
 
 
 def home(request):
@@ -18,15 +19,14 @@ def locate_restaurant(request):
     restaurants_found = find_restaurant_in_db(name_input)
     restaurants = []
     for restaurant in restaurants_found:
-        address = restaurant["address"].title() + " " + \
+        address = string.capwords(restaurant["address"])+ " " + \
             restaurant["city"].title() + ", " + \
             restaurant["zip_code"]
         restaurants.append(
             {"id": restaurant["id"],
-             "name": restaurant["name"].lower().title(),
+             "name": string.capwords(restaurant["name"]),
              "address": address})
-    print("RESTAURANTS: ")
-    print(restaurants)
+
     return render_to_response('choose_restaurant.html',
                               {"restaurants": restaurants})
 

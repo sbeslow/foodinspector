@@ -33,18 +33,19 @@ def find_restaurant_in_db(restaurant_name):
 
 def likesounding_restaurants(restaurant_name):
     cursor = connection.cursor()
-    print("RESTAURANT IS: " + restaurant_name)
+
+    print("Searching database for: " + restaurant_name)
 
     # Forget about PEP8 for the next few lines
     query = "SELECT *, " +\
-            "difference(food_inspector_restaurant.name,'%s') as diff, " % restaurant_name +\
-            "levenshtein(food_inspector_restaurant.name, '%s') as lev " % restaurant_name +\
-            "from food_inspector_restaurant where soundex(name) = soundex('%s') " % restaurant_name +\
+            "difference(food_inspector_restaurant.name,%s) as diff, " +\
+            "levenshtein(food_inspector_restaurant.name, %s) as lev " +\
+            "from food_inspector_restaurant where soundex(name) = soundex(%s) " +\
             "order by diff, lev desc;"
 
     print("Searching database with: %s" % query)
 
-    cursor.execute(query)
+    cursor.execute(query, (restaurant_name,restaurant_name,restaurant_name))
     results = dictfetchall(cursor)
     return results
 
