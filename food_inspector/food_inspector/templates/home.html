@@ -2,15 +2,26 @@
 
 {% block content %}
 <div class="container">
-	<h1 style="text-align:center;">The Food Inspector</h1>
+    <div class="row" style="margin:40px;">
+        <div class="col-sm-11 col-sm-offset-1">
+            <h1>Chicago Food Inspector</h1>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3">
+            <h5>Check the latest food inspection results for your next meal.</h5>
+        </div>
+    </div>
     <form action="/locate" method="post" class="form-inline">
         {% csrf_token %}
-        <div class="col-sm-8 col-sm-offset-2" style="margin-top:140px;">
-            <div class="form-group form-group-lg" style="width: 100%;">
+        <div class="form-group form-group-lg" style="width: 100%;">
+            <div class="col-sm-8" style="margin-bottom:30px;">
                 <input type="text" class="form-control" name="restaurantName"
                                     placeholder="Restaurant Name" style="width: 100%;">
-                <input type="submit" value="Inspect" class="btn btn-warning btn-lg">
             </div>
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-0">
+                <input type="submit" value="Inspect" class="btn btn-warning btn-lg" style="width:100%">
+            </div>
+        </div>
+
         </div>
     </form>
 </div>
