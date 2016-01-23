@@ -4,5 +4,7 @@ food_inspector/food_inspector/__pycache__/
 food_inspector/.DS_Store
 food_inspector/db.sqlite3
 food_inspector/settings/local.py
+food_inspector/food_inspector/static/csvs
 *pyc
 .DS_Store
+private/*
