@@ -10,8 +10,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        sfile = fsettings.BASE_DIR + '/static/Food_Inspections.csv'
+        sfile = fsettings.BASE_DIR + '/static/csvs/Food_Inspections.csv'
         print(sfile)
+
+        # Delete all entries from the Restaurant table
+        Restaurant.objects.all().delete()
 
         with open(sfile) as f:
             inspection_records = [
@@ -21,7 +24,7 @@ class Command(BaseCommand):
             for inspection_record in inspection_records:
                 try:
                     Restaurant.objects.create(
-                        name=inspection_record["DBA Name"],
+                        name=inspection_record["DBA Name"].upper(),
                         license_number=inspection_record["License #"],
                         address=inspection_record["Address"],
                         city=inspection_record["City"],
