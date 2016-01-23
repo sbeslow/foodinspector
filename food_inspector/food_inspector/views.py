@@ -57,8 +57,9 @@ def retrieve_inspection_report(request, restaurant_id):
     most_recent_report = inspection_reports[0]
     print("MOST RECENT")
     print(most_recent_report)
-    data = {"restaurant": {"name": restaurant.name,
-            "address": restaurant.address}}
+    data = {"restaurant": {"name": string.capwords(restaurant.name),
+            "address": string.capwords(restaurant.address)},
+            "results": string.capwords(most_recent_report["results"])}
     if "violations" in most_recent_report:
         violations = most_recent_report["violations"].split('|')
     else:
