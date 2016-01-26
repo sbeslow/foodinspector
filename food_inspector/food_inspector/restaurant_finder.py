@@ -51,14 +51,15 @@ def likesounding_restaurants(restaurant_name):
 
 
 def trim_name_for_stop_words(restaurant_name):
-    stop_words = [' the ', ' a ', ' and ', '&', '\'', ]
+    stop_words = ['the', 'a', 'and', '&', '\'', ]
 
     clean_restaurant_name = re.sub('[^a-zA-Z0-9 \n\.]', ' ', restaurant_name.replace('\'', ''))
-
+    clean_restaurant_name = re.sub(' +', ' ', clean_restaurant_name)
     trimmed_name = ''
     for word in clean_restaurant_name.split(" "):
         if word not in stop_words:
             trimmed_name += ' ' + word
+
     return trimmed_name.strip().upper()
 
 def dictfetchall(cursor):

@@ -3,6 +3,7 @@ from food_inspector.models import Restaurant
 import csv
 import food_inspector.settings.base as fsettings
 from django.db import IntegrityError
+from food_inspector.restaurant_finder import trim_name_for_stop_words
 
 
 class Command(BaseCommand):
@@ -23,8 +24,11 @@ class Command(BaseCommand):
             self.stdout.write("Writing records to database")
             for inspection_record in inspection_records:
                 try:
+                    trimmed_name = trim_name_for_stop_words(
+                        inspection_record["DBA Name"].upper())
                     Restaurant.objects.create(
-                        name=inspection_record["DBA Name"].upper(),
+                        chi_name=inspection_record["DBA Name"].upper(),
+                        trimmed_name=trimmed_name,
                         license_number=inspection_record["License #"],
                         address=inspection_record["Address"],
                         city=inspection_record["City"],
