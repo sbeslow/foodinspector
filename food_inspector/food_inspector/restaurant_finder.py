@@ -3,11 +3,11 @@ import re
 
 
 def find_restaurant_in_db(restaurant_name):
-
-    restaurants_from_db = likesounding_restaurants(restaurant_name)
-
     restaurant_trimmed = trim_name_for_stop_words(restaurant_name)
     print("Trimmed name is %s" % restaurant_trimmed)
+
+    restaurants_from_db = likesounding_restaurants(restaurant_trimmed)
+
     buckets = {"1": [], "2": [], "3": []}
     for iter_restaurant in restaurants_from_db:
         iter_restaurant_trimmed = trim_name_for_stop_words(iter_restaurant["name"])
@@ -38,9 +38,9 @@ def likesounding_restaurants(restaurant_name):
 
     # Forget about PEP8 for the next few lines
     query = "SELECT *, " +\
-            "difference(food_inspector_restaurant.name,%s) as diff, " +\
-            "levenshtein(food_inspector_restaurant.name, %s) as lev " +\
-            "from food_inspector_restaurant where soundex(name) = soundex(%s) " +\
+            "difference(food_inspector_restaurant.chi_name,%s) as diff, " +\
+            "levenshtein(food_inspector_restaurant.chi_name, %s) as lev " +\
+            "from food_inspector_restaurant where soundex(chi_name) = soundex(%s) " +\
             "order by diff, lev desc;"
 
     print("Searching database with: %s" % query)
